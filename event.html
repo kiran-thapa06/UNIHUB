@@ -601,6 +601,25 @@ body {
   margin: 0 auto;
   padding: 2rem 1.5rem;
 }
+.event-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.more-info-btn {
+    background-color: #346beb;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.more-info-btn:hover {
+    background-color: #1a4cc7;
+}
     </style>
 </head>
 <body>
@@ -763,16 +782,18 @@ body {
 
         <!-- Event 8 -->
         <div class="event-card" data-category="virtual research">
-            <div class="event-image">Research Symposium Banner</div>
-            <div class="event-details">
-                <h3 class="event-title">Undergraduate Research Symposium</h3>
-                <p class="event-date"><i class="far fa-calendar-alt"></i> April 20, 2025</p>
-                <p class="event-location"><i class="fas fa-map-marker-alt"></i> Virtual Event (Zoom)</p>
-                <p class="event-description">Present your research projects to faculty, peers, and industry professionals. A virtual event open to all IT undergraduates engaged in research. Registration required to present.</p>
-                <button class="interested-btn" data-event="Undergraduate Research Symposium">I'm Interested</button>
-            </div>
-        </div>
-    </div>
+          <div class="event-image">Research Symposium Banner</div>
+          <div class="event-details">
+              <h3 class="event-title">Undergraduate Research Symposium</h3>
+              <p class="event-date"><i class="far fa-calendar-alt"></i> April 20, 2025</p>
+              <p class="event-location"><i class="fas fa-map-marker-alt"></i> Virtual Event (Zoom)</p>
+              <p class="event-description">Present your research projects to faculty, peers, and industry professionals. A virtual event open to all IT undergraduates engaged in research. Registration required to present.</p>
+              <div class="event-buttons">
+                  <button class="interested-btn" data-event="Undergraduate Research Symposium">I'm Interested</button>
+                  <button class="more-info-btn" data-event="Undergraduate Research Symposium">More Information</button>
+              </div>
+          </div>
+      </div>
 
     <!-- No Events Message -->
     <div class="no-events" id="noEvents" style="display: none;">
@@ -839,10 +860,7 @@ body {
     </div>
 
     <script>
-         AOS.init({
-            once: true, 
-            mirror: false 
-        });
+       
         // Get the modal
         const modal = document.getElementById('registrationModal');
         const modalTitle = document.getElementById('modalTitle');
@@ -1052,6 +1070,18 @@ body {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(30px)';
             });
+            
+document.addEventListener('DOMContentLoaded', function() {
+    const moreInfoButtons = document.querySelectorAll('.more-info-btn');
+    
+    moreInfoButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const eventName = this.getAttribute('data-event');
+            localStorage.setItem('currentEvent', eventName);
+            window.open('feedback.html', '_blank');
+        });
+    });
+});
     </script>
 </body>
 </html>
