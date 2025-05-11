@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global University Network</title>
+    <link rel="stylesheet" href="login-styles.css">
     <style>
    /* Google Fonts Import */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
@@ -856,7 +857,7 @@ footer::before {
 <body>
     <!-- Header -->
     <header>
-        <div class="container">
+<div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">GlobalUni Network</a>
                 <ul class="nav-links">
@@ -866,6 +867,10 @@ footer::before {
                     <li><a href="event.html">Events</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
+                <!-- Login Button -->
+                <div class="auth-buttons">
+                    <button class="login-btn" onclick="openLoginModal()">Login / Register</button>
+                </div>
                 <div class="hamburger">
                     <div class="line1"></div>
                     <div class="line2"></div>
@@ -874,6 +879,105 @@ footer::before {
             </nav>
         </div>
     </header>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <div class="auth-tabs">
+                <div class="tab-header">
+                    <div class="active" onclick="showTab('login-tab')">Login</div>
+                    <div onclick="showTab('register-tab')">Register</div>
+                </div>
+                
+                <!-- Login Tab -->
+                <div id="login-tab" class="tab-content active">
+                    <h2>Login to your account</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                        <div class="separator">
+                            <span>OR</span>
+                        </div>
+                        <div class="social-login">
+                            <button type="button" class="google-btn" onclick="loginWithGoogle()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#4285F4">
+                                    <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/>
+                                </svg>
+                                Continue with Google
+                            </button>
+                        </div>
+                        <div class="form-footer">
+                            <p>Forgot password? <a href="#" onclick="showPasswordReset()">Reset it here</a></p>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Register Tab -->
+                <div id="register-tab" class="tab-content">
+                    <h2>Create an account</h2>
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="registerName">Full Name</label>
+                            <input type="text" id="registerName" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email</label>
+                            <input type="email" id="registerEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Password</label>
+                            <input type="password" id="registerPassword" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                        <div class="separator">
+                            <span>OR</span>
+                        </div>
+                        <div class="social-login">
+                            <button type="button" class="google-btn" onclick="registerWithGoogle()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#4285F4">
+                                    <path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/>
+                                </svg>
+                                Sign up with Google
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Password Reset -->
+                <div id="reset-tab" class="tab-content">
+                    <h2>Reset your password</h2>
+                    <form id="resetForm">
+                        <div class="form-group">
+                            <label for="resetEmail">Email</label>
+                            <input type="email" id="resetEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Send Reset Link</button>
+                        </div>
+                        <div class="form-footer">
+                            <p><a href="#" onclick="showTab('login-tab')">Back to login</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -1012,6 +1116,7 @@ footer::before {
             </div>
         </div>
     </footer>
+        <script src="login-script.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
